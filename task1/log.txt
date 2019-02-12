@@ -1,0 +1,6 @@
+$ git log
+commit be00b5830f1c7112772abfafa97553a11fa47baa (HEAD -> master)
+Author: Imfrogii <vip.shelko@mail.ru>
+Date:   Tue Feb 12 23:26:37 2019 +0300
+
+    add .gitignore
