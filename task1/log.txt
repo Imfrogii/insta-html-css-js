@@ -1,12 +1,12 @@
 $ git log
-commit 9658cbdfde517ab2940004a4032613b9bf57453d (HEAD -> master)
+commit d715aacfc5ab58bbfcdab01318ea54f50cf7779d (HEAD -> master)
 Author: Imfrogii <vip.shelko@mail.ru>
-Date:   Wed Feb 13 00:06:06 2019 +0300
+Date:   Wed Feb 13 23:29:41 2019 +0300
 
     add status.txt
 
-commit 46a5f11ff8b5f9128290626f06e41f689d7de470
+commit 7ebe6d558a96f2f0c66a294bcdbd7ed68cf30cdc
 Author: Imfrogii <vip.shelko@mail.ru>
-Date:   Wed Feb 13 00:00:01 2019 +0300
+Date:   Wed Feb 13 23:25:00 2019 +0300
 
     add .gitignore
