@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Racoon</title>
+  <link rel="stylesheet" href="
+https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="font_awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" href="img/icon/log_racoon.png" type="image/png">
+
+</head>
+
+<body>
+
+  <footer class="my-footer">
+    <ul style="color: white">
+      <li class="active"><a href="#" style="color: white">Главная</a></li>
+      <li><a href="#" style="color: white">О наc</a></li>
+      <li><a href="#" style="color: white">Помощь</a></li>
+      <li><a href="#" style="color: white">Хештеги</a></li>
+      <li><a href="#" style="color: white">Язык</a></li>
+      <li>Щелко Алексей <br>8 группа <br>06.03.19 <br> vip.shelko@mail.ru</li>
+    </ul>
+  </footer>
+
+
+  <div class="main-body">
+
+    <header class="main-head">
+      <div class="menu_line" style="border: 2px outset rgb(112, 167, 177); border-right-style: outset rgb(112, 167, 177);">
+        <a href="#" class="logo"><img src="img/logo.png" alt="Racoon"></a>
+        <input class="search" type="text" value="Search">
+        <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
+            <template id="header-menu">
+              <div class="user"><small> <small> <u></u> </small> </small>
+                <a href="#" class="usericon"><i class="fa fa-user" aria-hidden="true" style="color:black;"></i></a>
+              </div>
+            </template>
+            <button class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i></button>
+      </div>
+    </header>
+
+
+<template id="photo-template">
+    <div class="full-post">
+      <div class="all-photos">
+          <div class="content">
+            <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 5vw; min-height: 5vw;"></a>
+              <div class="username"></div>
+              <div class="time"></div>
+            </div>
+            <div class="photo"><img src="img/photo2.jpg" width="100%" height="100%" alt="Photo1"></div>
+            <div class="likes">
+              <input class="button-like" type="image" src="img/like.png" width="5%" name="bottom" value="Like">
+              <div class="people-likes"></div>
+            </div>
+          </div>
+      </div>
+
+      <div class="all-comment-photo">
+        <!-- <template id="comment-template"> -->
+          <div class="comment-photo">
+            <input class="leave-comment" type="text" value="Комментировать">
+            <div class="all-comments">
+                <div class="username">
+                  <u><b>Sasha18</b></u>:
+                </div>
+                <b><i>Какая красота!!!</i></b>
+              <div class="hashtags">
+                <a href="#">#круто</a>
+                <a href="#">#красота</a>
+                <a href="#">#пейзаж</a>
+              </div>
+              <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 4vw; min-height: 4vw;;"></a>
+                <div class="username">
+                  <b>Valera1</b>:
+                </div>
+                <i>Лодка топ)) За сколько брал?</i>
+              </div>
+              <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 4vw; min-height: 4vw;;"></a>
+                <div class="username">
+                  <b>Julia0304</b>:
+                </div>
+                <i>ТЫ ДОЛЖЕН ВЗЯТЬ МЕНЯ С СОБОЙ!!! Пожалуйста:(</i>
+              </div>
+              <button class="more-comments" type="button" style="margin-left: 30%; background-color: white;" value="Больше"><small><small><i>Больше</i></small></small></button>
+            </div>
+          </div>
+        <!-- </template> -->
+      </div>
+    </div>
+    </template>
+    <button class="more-photos" type="button" style=" width: 50%; margin-left: 30%; margin-top: 8%; border: none; background-color: white;" value="Больше "><i>Больше фото</i></button>
+  </div>
+  <!-- <script src="script.js"></script> -->
+  <script src="viev.js"></script>
+  <script src="photoPosts.js"></script>
+  <script src="class.js"></script>
+</body>
+
+</html>

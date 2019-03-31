@@ -1,0 +1,93 @@
+class View{
+  static showHeader(){
+    let template = document.querySelector("#header-menu");
+    let temp = template.content.cloneNode(true);
+    let u = temp.querySelectorAll('u');
+    u[0].innerHTML = "user1";
+    template.parentNode.appendChild(temp);
+  }
+
+  static clear(){
+    let full = document.getElementsByClassName("full-post");
+    for(let i = 0; i<full.length; i++){
+      while(full[i])
+        full[i].parentNode.removeChild(full[i]);
+}
+    let more = document.getElementsByClassName("more-photos")[0];
+    if(more.firstChild)
+    more.removeChild(more.firstChild);
+}
+
+  static showPost(post){
+    let template = document.querySelector("#photo-template");
+    let content = template.content.cloneNode(true);
+    View.showPhoto(post, content);
+    View.showHeaderPost(post, content);
+    View.showLikes(post,content);
+    View.showComments(post,content);
+    template.parentNode.appendChild(content);
+
+  }
+
+  static showLikes(post, content){
+    let likes = content.querySelector(".people-likes");
+    if(post.likes.length!==0){
+    let endStr = post.likes[0].toString()+" и еще "+ (post.likes.length-1).toString()+ " лайкнули";
+      likes.innerHTML = endStr;
+    }
+    else likes.innerHTML = 0;
+
+  }
+
+  static showPhoto(post, content){
+    let photol = content.querySelector(".photo img");
+    photol.src = post.photoLink;
+  }
+
+  static showHeaderPost(post, content){
+    let userPhoto = content.querySelector(".user-photo");
+    let imgUser = userPhoto.querySelector("img");
+    imgUser.src = "img/user-logo.png";
+    let userName = userPhoto.querySelector(".username");
+    userName.innerHTML = post.author;
+    let time = userPhoto.querySelector(".time");
+    time.innerHTML = View._createdAtToString(post.createdAt);
+  }
+
+
+  static showComments(post, content) {
+    let template = content.querySelector(".all-comments");
+    let userName = template.querySelector(".username u b");
+    userName.innerHTML = post.author;
+    let description = template.querySelector("i");
+    description.innerHTML = post.descriprion;
+    let hashtags = template.querySelectorAll(".hashtags a");
+    if (post.hashtags.length !== 0)
+      for (let i = 0; i < post.hashtags.length; i++)
+        hashtags[i].innerHTML = post.hashtags[i];
+
+    let userPhoto = content.querySelector(".user-photo");
+    let imgUser = userPhoto.querySelector("img");
+    imgUser.src = "img/user-logo.png";
+  }
+  static _createdAtToString(createdAt) {
+        let result = '';
+        if (createdAt.getHours() < 10) {
+            result += '0'
+        }
+        result += createdAt.getHours() + ':';
+        if (createdAt.getMinutes() < 10) {
+            result += '0';
+        }
+        result += createdAt.getMinutes() + '<br>';
+        if (createdAt.getDate() < 10) {
+            result += '0';
+        }
+        result += createdAt.getDate() + ':';
+        if (createdAt.getMonth() < 9) {
+            result += '0';
+        }
+        result += (createdAt.getMonth() + 1) + ':' + createdAt.getFullYear();
+        return result;
+    }
+}
