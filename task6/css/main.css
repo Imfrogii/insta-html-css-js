@@ -8,7 +8,9 @@ body {
   background-size: 100% 100%;
   background-attachment: fixed;
 }
-
+li{
+  list-style-type: none;
+}
 .main-body {
   display: inline-block;
   height: 100vh;
@@ -40,7 +42,42 @@ body {
   clear: right;
   overflow: hidden;
   width: 21%;
-  height: 100%;
+  text-align: center;
+  /* height: 100%; */
+  height: 27px;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.search-form{
+  display: none;
+  visibility: hidden;
+  color: white;
+  text-align: right;
+}
+.search:hover>.search-form{
+  visibility: visible;
+  display: block;
+  position: absolute;
+  width: 30vw;
+  z-index: 999;
+  margin-left: -8vw;
+  background-color: rgba(32, 31, 31, 1);
+  text-align: center;
+  border: 1px solid rgb(71, 66, 80);
+  align-items: right;
+  border-right: none;
+
+}
+
+.search-line{
+  height: 2vh;
+  width: 10vw;
+  text-align: center;
+}
+
+.search-form p{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .comments {
@@ -91,7 +128,8 @@ body {
 }
 
 .content>.user-photo {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 98%;
   min-height: 20px;
   /* max-height: 25px; */
@@ -102,22 +140,29 @@ body {
 }
 
 .user-photo>.time {
-  display: inline-block;
-  float: right;
+  /* display: inline-block; */
+  margin-left: auto;
   padding-right: 2px;
 }
 
 .user-photo>.username {
-  display: inline-block;
+  /* display: inline-block; */
   margin-left: 1%;
   text-transform: full-width;
+  font-size: 2.5vw;
+}
+
+.content>.user-photo a img{
+  width: 3vw;
 }
 
 .likes {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 100%;
   border: 2px outset rgb(130, 158, 149);
   border-top: none;
+  font-size: 5vw;
 }
 
 .button-like {
@@ -127,7 +172,7 @@ body {
 }
 
 .people-likes {
-  display: inline-block;
+  margin-left: 1vw;
 }
 
 .full-post {
@@ -135,6 +180,7 @@ body {
   height: 65vw;
   margin-top: 4.5%;
 }
+
 
 .all-comment-photo {
   display: inline-block;
@@ -193,6 +239,10 @@ body {
   margin-top: 0px;
   width: 0px;
 }
+.small-menu{
+  display: none;
+  visibility: hidden;
+}
 
 .hashtags {
   display: inline-block;
@@ -215,10 +265,20 @@ body {
 }
 
 @media screen and (min-width: 800px) {
-  .content>.user-photo {
-    font-size: 20px;
+  .content>.user-photo>.username {
+    font-size: 2vw;
   }
 
+  .content>.user-photo>.time {
+    font-size: 1.5vw;
+  }
+
+  .content>.user-photo a img{
+    width: 3vw;
+  }
+  .user-photo>.time{
+    font-size: 2vw;
+  }
   .content>.likes {
     font-size: 20px;
   }
@@ -226,7 +286,7 @@ body {
 
 @media screen and (min-width:480px) and (max-width: 800px) {
   .content>.user-photo {
-    font-size: 15px;
+    font-size: 3vw;
   }
 
   .content>.likes {
@@ -236,6 +296,7 @@ body {
 
 @media screen and (max-width: 910px) {
   .ifSmall {
+    position: relative;
     visibility: visible;
     margin-left: 30%;
     margin-top: 1.5%;
@@ -243,6 +304,43 @@ body {
     background-color: white;
   }
 
+  .ifSmall:hover>.small-menu {
+    visibility: visible;
+    display: block;
+    position: absolute;
+    width: 40vw;
+    z-index: 999;
+    margin-left: -18vw;
+    background-color: rgba(0, 0, 0, 1);
+    font-size: 3vw;
+    text-align: center;
+    border: 1px solid rgb(71, 66, 80);
+    align-items: center;
+    border-right: none;
+    transition: all 2s 2s;
+    /* min-height: 100px;
+    min-width: 50px; */
+    /* align-items: ; */
+  }
+
+  ul hr{
+    /* float: left; */
+
+    width: 80%;
+    /* display: flex; */
+  }
+  .small-menu ul li a{
+    color: white;
+    text-decoration: none;
+  }
+
+  .small-menu ul li a:hover {
+    color:rgb(119, 207, 89);
+  }
+
+  .time{
+    font-size: 2vw;
+  }
   .menu_line {
     float: inherit;
     align-items: center;
@@ -266,6 +364,7 @@ body {
     margin-right: 0%;
     margin-top: 0px;
     width: 0px;
+    position: absolute;
   }
 
   .comments {
@@ -295,6 +394,10 @@ body {
     margin-left: 40%;
   }
 
+  .small-menu{
+    margin-left: 5vw;
+  }
+
   .full-post {
     margin-top: 10%;
   }
@@ -313,6 +416,13 @@ body {
   .content>.likes {
     font-size: 3vw;
   }
+  .time{
+    font-size: 2.5vw;
+  }
+  .all-comments>.username{
+    font-size: 3vw;
+  }
+
 }
 
 @media screen and (max-width: 320px) {
@@ -324,6 +434,9 @@ body {
     margin-top: 15%;
   }
 
+  .all-comments>{
+    font-size: 2.6vw;
+  }
   .content>.likes {
     font-size: 3vw;
   }

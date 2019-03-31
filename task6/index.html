@@ -11,11 +11,9 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link rel="stylesheet" href="font_awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="shortcut icon" href="img/icon/log_racoon.png" type="image/png">
-
 </head>
 
 <body>
-
   <footer class="my-footer">
     <ul style="color: white">
       <li class="active"><a href="#" style="color: white">Главная</a></li>
@@ -27,29 +25,89 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     </ul>
   </footer>
 
-
   <div class="main-body">
-
     <header class="main-head">
       <div class="menu_line" style="border: 2px outset rgb(112, 167, 177); border-right-style: outset rgb(112, 167, 177);">
         <a href="#" class="logo"><img src="img/logo.png" alt="Racoon"></a>
-        <input class="search" type="text" value="Search">
+        <div class="search">Search
+<template id="search-help">
+          <form class="search-form">
+            <!-- <p><input maxlength="" placeholder="Author" class="search-line"></p>
+            <p><input maxlength="10" placeholder="From" class="search-line" style="margin-bottom: 0; padding-bottom: 0;"></p>
+            <p><input maxlength="10" placeholder="To" class="search-line"></p>
+            <p><input maxlength="" placeholder="Hashtags" type="text" class="search-line" style="margin-bottom: 2px;"></p> -->
+            Автор:<input list="search-line0">
+            <datalist id="search-line0">
+              <option>sdf</option>
+              <option>xcv</option>
+              <option>xcds</option>
+            </datalist>
+
+            <p> Лайки:<input list="search-line1">
+              <datalist id="search-line1">
+                <option value="saf">
+                <option value="MEM">
+                <option value="VKO">
+              </datalist>
+
+              <p>Хештеги:<input list="search-line2">
+                <datalist id="search-line2">
+                  <option value="VVO">
+                  <option value="MExzcvM">
+                  <option value="VKO">
+                </datalist>
+
+                <p> От:<input list="search-line3">
+                  <datalist id="search-line3">
+                    <option value="VVO">
+                    <option value="1">
+                    <option value="w">
+                  </datalist>
+
+                  <p> До:<input list="search-line4">
+                    <datalist id="search-line4">
+                      <option value="VVO">
+                      <option value="MEM">
+                      <option value="VKO">
+                    </datalist>
+
+
+                    <p style="margin-bottom: auto;"><button class="search-button"><img src="img/search.png" alt="search" style="width:5%; height:5%;"></button>
+
+          </form>
+  </template>
+        </div>
         <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
             <template id="header-menu">
               <div class="user"><small> <small> <u></u> </small> </small>
                 <a href="#" class="usericon"><i class="fa fa-user" aria-hidden="true" style="color:black;"></i></a>
               </div>
             </template>
-            <button class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i></button>
+            <div class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i>
+              <div class="small-menu">
+                <ul>
+                  <li><a href="">Главная</a></li>
+                  <hr>
+                  <li><a href="">Моя страница</a></li>
+                  <hr>
+                  <li><a href="">Уведомления</a></li>
+                  <hr>
+                  <li><a href="">Настройки</a></li>
+                  <hr>
+                  <li><a href="">Помощь</a></li>
+                </ul>
+              </div>
+            </div>
+
       </div>
     </header>
 
 
-<template id="photo-template">
-    <div class="full-post">
-      <div class="all-photos">
+    <template id="photo-template">
+      <div class="full-post">
+        <div class="all-photos">
           <div class="content">
-            <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 5vw; min-height: 5vw;"></a>
+            <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 4vw; min-height: 4vw;"></a>
               <div class="username"></div>
               <div class="time"></div>
             </div>
@@ -59,23 +117,25 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
               <div class="people-likes"></div>
             </div>
           </div>
-      </div>
+        </div>
 
-      <div class="all-comment-photo">
-        <!-- <template id="comment-template"> -->
+        <div class="all-comment-photo">
+          <!-- <template id="comment-template"> -->
           <div class="comment-photo">
             <input class="leave-comment" type="text" value="Комментировать">
             <div class="all-comments">
-                <div class="username">
-                  <u><b>Sasha18</b></u>:
-                </div>
-                <b><i>Какая красота!!!</i></b>
+              <div class="username">
+                <u><b>Sasha18</b></u>:
+              </div>
+              <b><i>Какая красота!!!</i></b>
+              <button class="more-description" type="button" style="display: none; padding: 0px; border: none; visibility: hidden; background-color: white;"><small><i>еще</i></small></button>
+              <br>
               <div class="hashtags">
                 <a href="#">#круто</a>
                 <a href="#">#красота</a>
                 <a href="#">#пейзаж</a>
               </div>
-              <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 4vw; min-height: 4vw;;"></a>
+              <!-- <div class="user-photo"><a href="#"><img src="img/user-logo.png" width="5%" height="100%" alt="User" style="min-width: 4vw; min-height: 4vw;;"></a>
                 <div class="username">
                   <b>Valera1</b>:
                 </div>
@@ -86,13 +146,13 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
                   <b>Julia0304</b>:
                 </div>
                 <i>ТЫ ДОЛЖЕН ВЗЯТЬ МЕНЯ С СОБОЙ!!! Пожалуйста:(</i>
-              </div>
+              </div> -->
               <button class="more-comments" type="button" style="margin-left: 30%; background-color: white;" value="Больше"><small><small><i>Больше</i></small></small></button>
             </div>
           </div>
-        <!-- </template> -->
+          <!-- </template> -->
+        </div>
       </div>
-    </div>
     </template>
     <button class="more-photos" type="button" style=" width: 50%; margin-left: 30%; margin-top: 8%; border: none; background-color: white;" value="Больше "><i>Больше фото</i></button>
   </div>
