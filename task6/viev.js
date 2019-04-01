@@ -18,16 +18,23 @@ class View {
       more.removeChild(more.firstChild);
   }
 
-  static showPost(post) {
+  static _createPost(post) {
     let template = document.querySelector("#photo-template");
     let content = template.content.cloneNode(true);
+    let all = (content.querySelector(".all-photos")).parentNode;
+    all.setAttribute("id", post.id);
     View.showPhoto(post, content);
     View.showHeaderPost(post, content);
     View.showLikes(post, content);
     View.showComments(post, content);
-    template.parentNode.appendChild(content);
-
+    return content;
   }
+
+  static showPost(post) {
+    let template = document.querySelector("#photo-template");
+    template.parentNode.appendChild(View._createPost(post));
+  }
+
 
   static showLikes(post, content) {
     let likes = content.querySelector(".people-likes");
@@ -61,9 +68,8 @@ class View {
     let description = template.querySelector("i");
     if (post.descriprion.length < 30) {
       description.innerHTML = post.descriprion;
-    }
-    else{
-      description.innerHTML = post.descriprion.slice(0,30)+"...";
+    } else {
+      description.innerHTML = post.descriprion.slice(0, 30) + "...";
       let button = content.querySelector(".more-description");
       button.style.visibility = "visible";
       button.style.display = "inline";
@@ -74,72 +80,90 @@ class View {
         hashtags[i].innerHTML = post.hashtags[i];
   }
 
-  static showExamples(last3Filters, inWhichFilter){
+  static showExamples(last3Filters, inWhichFilter) {
     let template = document.querySelector("#search-help");
     // document.getElementById('search-line0').options[i].text = "Txt";
     let content = template.content.cloneNode(true);
     let datalist = content.querySelectorAll("#search-line0")[0];
 
     // let option = datalist[0].querySelector("option");
-    for(let i = 0; i<inWhichFilter; i++){
-      if(last3Filters[i].author!==undefined){
+    for (let i = 0; i < inWhichFilter; i++) {
+      if (last3Filters[i].author !== undefined) {
         // alert(datalist.options[i].text);
-      // option[i].value = last3Filters[i].author;
-      datalist.options[i].text = last3Filters[i].author;
-      // document.getElementById("#search-line0").options[i].text = "Txt";
-      // alert(datalist.options[i].text);
+        // option[i].value = last3Filters[i].author;
+        datalist.options[i].text = last3Filters[i].author;
+        // document.getElementById("#search-line0").options[i].text = "Txt";
+        // alert(datalist.options[i].text);
+      }
     }
-    }
-//     datalist = content.querySelector("#search-line1");
-//     option = datalist[0].querySelectorAll("option");
-//     for(let i = 0; i<inWhichFilter; i++){
-//       if(last3Filters[i].likes!==undefined)
-//       option[i].value = last3Filters[i].likes;
-//     }
-//
-// datalist = content.querySelector("#search-line2");
-//     option = datalist[2].querySelectorAll("option");
-//     for(let i = 0; i<inWhichFilter; i++){
-//       if(last3Filters[i].hashtags!==undefined)
-//       option[i].value = last3Filters[i].hashtags;
-//     }
-//
-//     datalist = content.querySelector("#search-line3");
-//     option = datalist[3].querySelectorAll("option");
-//     for(let i = 0; i<inWhichFilter; i++){
-//       if(last3Filters[i].skip!==undefined)
-//       option[i].value = last3Filters[i].skip;
-//     }
-//
-//     datalist = content.querySelector("#search-line4");
-//     option = datalist[0].querySelectorAll("option");
-//     for(let i = 0; i<inWhichFilter; i++){
-//       if(last3Filters[i].top!==undefined)
-//       option[i].value = last3Filters[i].top;
-//     }
+    //     datalist = content.querySelector("#search-line1");
+    //     option = datalist[0].querySelectorAll("option");
+    //     for(let i = 0; i<inWhichFilter; i++){
+    //       if(last3Filters[i].likes!==undefined)
+    //       option[i].value = last3Filters[i].likes;
+    //     }
+    //
+    // datalist = content.querySelector("#search-line2");
+    //     option = datalist[2].querySelectorAll("option");
+    //     for(let i = 0; i<inWhichFilter; i++){
+    //       if(last3Filters[i].hashtags!==undefined)
+    //       option[i].value = last3Filters[i].hashtags;
+    //     }
+    //
+    //     datalist = content.querySelector("#search-line3");
+    //     option = datalist[3].querySelectorAll("option");
+    //     for(let i = 0; i<inWhichFilter; i++){
+    //       if(last3Filters[i].skip!==undefined)
+    //       option[i].value = last3Filters[i].skip;
+    //     }
+    //
+    //     datalist = content.querySelector("#search-line4");
+    //     option = datalist[0].querySelectorAll("option");
+    //     for(let i = 0; i<inWhichFilter; i++){
+    //       if(last3Filters[i].top!==undefined)
+    //       option[i].value = last3Filters[i].top;
+    //     }
 
-        // content.appendChild(datalist)
-     template.parentNode.appendChild(content);
+    // content.appendChild(datalist)
+    template.parentNode.appendChild(content);
   }
 
-  static _createdAtToString(createdAt) {
-    let result = '';
-    if (createdAt.getHours() < 10) {
-      result += '0'
+
+  static delete(id) {
+    let template = document.querySelector(".full-post").parentNode;
+    let toDel = document.getElementById(id);
+    if (toDel !== null) {
+      template.removeChild(toDel);
     }
-    result += createdAt.getHours() + ':';
-    if (createdAt.getMinutes() < 10) {
-      result += '0';
-    }
-    result += createdAt.getMinutes() + '<br>';
-    if (createdAt.getDate() < 10) {
-      result += '0';
-    }
-    result += createdAt.getDate() + ':';
-    if (createdAt.getMonth() < 9) {
-      result += '0';
-    }
-    result += (createdAt.getMonth() + 1) + ':' + createdAt.getFullYear();
-    return result;
   }
+
+  static refactor(id, post) {
+    let main = document.querySelector('.full-post').parentNode;
+    let node = document.getElementById(id);
+    if (node !== null) {
+      main.replaceChild(View._createPost(post), node);
+    }
+  }
+
+
+static _createdAtToString(createdAt) {
+  let result = '';
+  if (createdAt.getHours() < 10) {
+    result += '0'
+  }
+  result += createdAt.getHours() + ':';
+  if (createdAt.getMinutes() < 10) {
+    result += '0';
+  }
+  result += createdAt.getMinutes() + '<br>';
+  if (createdAt.getDate() < 10) {
+    result += '0';
+  }
+  result += createdAt.getDate() + ':';
+  if (createdAt.getMonth() < 9) {
+    result += '0';
+  }
+  result += (createdAt.getMonth() + 1) + ':' + createdAt.getFullYear();
+  return result;
+}
 }

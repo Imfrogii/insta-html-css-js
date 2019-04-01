@@ -185,7 +185,7 @@ let main = (function() {
       ]);
       let last3Filters = [{}];
       let inWhichFilter = 0;
-      let userName = "";
+      let userName = "admin";
       return {
         show() {
           View.showHeader();
@@ -226,19 +226,21 @@ let main = (function() {
           return false;
         },
 
-        deletePost(post) {
+        deletePost(id) {
           if (userName !== "") {
-            if (photoPosts.remove(post.id)) {
-              this.get(0, 10, last3Filters[inWhichFilter]);
+            if (photoPosts.remove(id)) {
+              // this.get(0, 10, last3Filters[inWhichFilter]);
+              View.delete(id);
               return true;
             } else return false;
           } else return false;
         },
 
-        editPost(post) {
+        editPost(id, post) {
           if (userName !== "") {
-            if (photoPosts.edit(post.id, post)) {
-              this.get(0, 10, last3Filters[inWhichFilter]);
+            if (photoPosts.edit(id, post)) {
+              // this.get(0, 10, last3Filters[inWhichFilter]);
+              View.refactor(id,post);
               return true;
             } else return false;
           }
@@ -253,7 +255,10 @@ let main = (function() {
 
 
     main.get(0,5);
-    main.get(0,7);
+    main.get(0,2);
+    main.editPost('1',{descriprion:"Hi Guys", hashtags:["#Js","#JavaScript"]});
+    main.deletePost(2);
+    // main.deletePost(5);
     main.get({author: "Aleks"});
-    // main.showHelp();
+    main.showHelp();
     // main.get();

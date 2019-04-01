@@ -216,7 +216,7 @@ class PostCollection {
   remove(id) {
     let i = 0;
     for (let item of this._photoPosts) {
-      if (item.id === id) {
+      if (item.id == id) {
         delete this._photoPosts[i];
         this._photoPosts.clean(undefined);
         console.log(this._photoPosts);
