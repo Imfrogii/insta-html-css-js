@@ -230,6 +230,9 @@ li{
   margin-left: -2%;
   font-size: 2vw;
 }
+.my-footer li p{
+  margin: 0px;
+}
 
 .ifSmall {
   display: inline-block;
