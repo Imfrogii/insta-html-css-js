@@ -81,51 +81,32 @@ class View {
   }
 
   static showExamples(last3Filters, inWhichFilter) {
-    let template = document.querySelector("#search-help");
-    // document.getElementById('search-line0').options[i].text = "Txt";
-    let content = template.content.cloneNode(true);
-    let datalist = content.querySelectorAll("#search-line0")[0];
-
-    // let option = datalist[0].querySelector("option");
+    let template = document.getElementsByClassName("search-form")[0];
+    let datalist = template.querySelector("#search-line0");
+    let option = datalist.querySelectorAll("option");
     for (let i = 0; i < inWhichFilter; i++) {
       if (last3Filters[i].author !== undefined) {
-        // alert(datalist.options[i].text);
-        // option[i].value = last3Filters[i].author;
-        datalist.options[i].text = last3Filters[i].author;
-        // document.getElementById("#search-line0").options[i].text = "Txt";
-        // alert(datalist.options[i].text);
+        option[i].innerHTML = last3Filters[i].author;
       }
     }
-    //     datalist = content.querySelector("#search-line1");
-    //     option = datalist[0].querySelectorAll("option");
-    //     for(let i = 0; i<inWhichFilter; i++){
-    //       if(last3Filters[i].likes!==undefined)
-    //       option[i].value = last3Filters[i].likes;
-    //     }
-    //
-    // datalist = content.querySelector("#search-line2");
-    //     option = datalist[2].querySelectorAll("option");
-    //     for(let i = 0; i<inWhichFilter; i++){
-    //       if(last3Filters[i].hashtags!==undefined)
-    //       option[i].value = last3Filters[i].hashtags;
-    //     }
-    //
-    //     datalist = content.querySelector("#search-line3");
-    //     option = datalist[3].querySelectorAll("option");
-    //     for(let i = 0; i<inWhichFilter; i++){
-    //       if(last3Filters[i].skip!==undefined)
-    //       option[i].value = last3Filters[i].skip;
-    //     }
-    //
-    //     datalist = content.querySelector("#search-line4");
-    //     option = datalist[0].querySelectorAll("option");
-    //     for(let i = 0; i<inWhichFilter; i++){
-    //       if(last3Filters[i].top!==undefined)
-    //       option[i].value = last3Filters[i].top;
-    //     }
-
-    // content.appendChild(datalist)
-    template.parentNode.appendChild(content);
+    datalist = template.querySelector("#search-line1");
+    option = datalist.querySelectorAll("option");
+    for (let i = 0; i < inWhichFilter; i++) {
+      if (last3Filters[i].likes !== undefined) {
+        option[i].innerHTML = last3Filters[i].likes;
+      }
+    }
+    datalist = template.querySelector("#search-line2");
+    option = datalist.querySelectorAll("option");
+    let str = "";
+    for (let i = 0; i < inWhichFilter; i++) {
+      if (last3Filters[i].hashtags !== undefined) {
+        for(let item of last3Filters[i].hashtags){
+        str+=item+" ";
+      }
+        option[i].innerHTML = str;
+      }
+    }
   }
 
 

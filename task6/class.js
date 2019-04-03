@@ -254,11 +254,13 @@ let main = (function() {
     main.show();
 
 
-    main.get(0,5);
+
     main.get(0,2);
     main.editPost('1',{descriprion:"Hi Guys", hashtags:["#Js","#JavaScript"]});
     main.deletePost(2);
     // main.deletePost(5);
     main.get({author: "Aleks"});
+    main.get({descriprion:"Hi Guys", hashtags:["#Js","#JavaScript"]});
+    main.get(0,5);
     main.showHelp();
     // main.get();
