@@ -1,9 +1,9 @@
 class View {
-  static showHeader() {
+  static showHeader(userName) {
     let template = document.querySelector("#header-menu");
     let temp = template.content.cloneNode(true);
     let u = temp.querySelectorAll('u');
-    u[0].innerHTML = "user1";
+    u[0].innerHTML = userName;
     template.parentNode.appendChild(temp);
   }
 
@@ -18,7 +18,7 @@ class View {
       more.removeChild(more.firstChild);
   }
 
-  static _createPost(post) {
+  static _createPost(post, postOfUser) {
     let template = document.querySelector("#photo-template");
     let content = template.content.cloneNode(true);
     let all = (content.querySelector(".all-photos")).parentNode;
@@ -27,12 +27,19 @@ class View {
     View.showHeaderPost(post, content);
     View.showLikes(post, content);
     View.showComments(post, content);
+    if(postOfUser)
+    View.showButtonsUser(content);
     return content;
   }
 
-  static showPost(post) {
+  static showButtonsUser(content){
+  let buttons = content.querySelector(".buttons-user");
+  buttons.style.display = "block";
+  }
+
+  static showPost(post, postOfUser) {
     let template = document.querySelector("#photo-template");
-    template.parentNode.appendChild(View._createPost(post));
+    template.parentNode.appendChild(View._createPost(post, postOfUser));
   }
 
 

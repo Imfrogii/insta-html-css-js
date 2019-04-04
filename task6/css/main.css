@@ -64,9 +64,14 @@ li{
   background-color: rgba(32, 31, 31, 1);
   text-align: center;
   border: 1px solid rgb(71, 66, 80);
-  align-items: right;
+  align-items: left;
   border-right: none;
+}
 
+.search-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-line{
@@ -75,10 +80,18 @@ li{
   text-align: center;
 }
 
-.search-form p{
+.search-form li{
   margin-top: 5px;
   margin-bottom: 5px;
+  /* text-align:right; */
+  line-height: 20px;
 }
+
+.search-form label{
+  /* float: left; */
+  clear: both;
+}
+
 
 .comments {
   display: inline-block;
@@ -94,6 +107,15 @@ li{
   margin-top: 4.5px;
   font-size: 150%;
   white-space: nowrap;
+}
+
+.buttons-user button{
+  display: block;
+  margin-top: 2vw;
+}
+
+.buttons-user{
+  display: none;
 }
 
 .menu_line {
@@ -188,7 +210,6 @@ li{
   margin-right: 5%;
   margin-top: 1%;
   font-size: 3vw;
-  /* height: 100vw; */
   width: 30%;
   max-height: 60vh;
   overflow-x: visible;
@@ -320,18 +341,12 @@ li{
     border: 1px solid rgb(71, 66, 80);
     align-items: center;
     border-right: none;
-    transition: all 2s 2s;
-    /* min-height: 100px;
-    min-width: 50px; */
-    /* align-items: ; */
   }
 
   ul hr{
-    /* float: left; */
-
     width: 80%;
-    /* display: flex; */
   }
+
   .small-menu ul li a{
     color: white;
     text-decoration: none;
@@ -385,47 +400,6 @@ li{
     margin-top: 0px;
     width: 0px;
   }
-}
-
-@media screen and (orientation:portrait) {
-  .logo {
-    padding-left: 5%;
-    width: 20%;
-  }
-
-  .ifSmall {
-    margin-left: 40%;
-  }
-
-  .small-menu{
-    margin-left: 5vw;
-  }
-
-  .full-post {
-    margin-top: 10%;
-  }
-
-  .more-comments {
-    font-size: 100%;
-    margin-left: 0;
-  }
-
-  .my-footer {
-    margin-left: -6%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .content>.likes {
-    font-size: 3vw;
-  }
-  .time{
-    font-size: 2.5vw;
-  }
-  .all-comments>.username{
-    font-size: 3vw;
-  }
-
 }
 
 @media screen and (max-width: 320px) {

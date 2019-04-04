@@ -35,32 +35,34 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <div class="search">Search
           <form class="search-form">
             <u1>
-              <li>Автор:<input list="search-line0">
+              <li><label for="search-line0">Автор:</label><input list="search-line0">
                 <datalist id="search-line0">
                   <option></option>
                   <option></option>
                   <option></option>
                 </datalist>
               </li>
-              <li> Лайки:<input list="search-line1">
+              <li> <label for="search-line1">Лайки:</label><input list="search-line1">
                 <datalist id="search-line1">
                   <option></option>
                   <option></option>
                   <option></option>
                 </datalist>
               </li>
-              <li>Теги:<input list="search-line2">
+              <li><label for="search-line2">HТеги:</label><input list="search-line2">
                 <datalist id="search-line2">
                   <option></option>
                   <option></option>
                   <option></option>
                 </datalist>
               </li>
-            </u1>
-            <button class="search-button"><img src="img/search.png" alt="search" style="width:5%; height:5%;"></button>
-          </form>
 
-          </template>
+            </u1>
+            <div class="search-button">
+            <input type = "image" name = "apply" src="img/search.png" style="width:7%; height:10%;">
+            </div>
+
+          </form>
         </div>
         <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
             <template id="header-menu">
@@ -70,14 +72,16 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
             </template>
             <div class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i>
               <div class="small-menu">
-                <ul>
+                <ul style="padding:0">
                   <li><a href="">Главная</a></li>
                   <hr>
                   <li><a href="">Моя страница</a></li>
                   <hr>
                   <li><a href="">Уведомления</a></li>
                   <hr>
-                  <li><a href="">Настройки</a></li>
+                  <li><a href="">Добавить</a></li>
+                  <hr>
+                  <li><a href="">Поиск</a></li>
                   <hr>
                   <li><a href="">Помощь</a></li>
                 </ul>
@@ -133,6 +137,10 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
               </div> -->
               <button class="more-comments" type="button" style="margin-left: 30%; background-color: white;" value="Больше"><small><small><i>Больше</i></small></small></button>
             </div>
+          </div>
+          <div class="buttons-user">
+            <button class="refactor" type="button">Изменить</button>
+            <button class="delete" type="button">Удалить</button>
           </div>
         </div>
       </div>

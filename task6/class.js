@@ -185,10 +185,10 @@ let main = (function() {
       ]);
       let last3Filters = [{}];
       let inWhichFilter = 0;
-      let userName = "admin";
+      let userName = "User1";
       return {
         show() {
-          View.showHeader();
+          View.showHeader(userName);
         },
         showHelp(){
         View.showExamples(last3Filters,inWhichFilter);
@@ -211,8 +211,11 @@ let main = (function() {
           View.clear();
           let showPhotoPosts = photoPosts.getPage(skip, top, filterConfig);
 
-          for (let item of showPhotoPosts)
-            View.showPost(item);
+          for (let item of showPhotoPosts){
+            if(userName === item.author)
+            View.showPost(item, true);
+            else View.showPost(item, false);
+          }
             View.showExamples(last3Filters,inWhichFilter);
         },
 
