@@ -17,14 +17,16 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <footer class="my-footer">
     <ul style="color: white">
       <li class="active"><a href="#" style="color: white">Главная</a></li>
-      <li><a href="#" style="color: white">О наc</a></li>
-      <li><a href="#" style="color: white">Помощь</a></li>
-      <li><a href="#" style="color: white">Хештеги</a></li>
+      <li><a href="https://www.instagram.com/about/us/" style="color: white">О наc</a></li>
+      <li><a href="https://help.instagram.com/" style="color: white">Помощь</a></li>
+      <li><a href="https://www.instagram.com/directory/hashtags/" style="color: white">Хештеги</a></li>
       <li><a href="#" style="color: white">Язык</a></li>
-      <li><p>Щелко Алексей</p>
-      <p>8 группа</p>
-      <p>06.03.19</p>
-      <p>vip.shelko@mail.ru</p></li>
+      <li>
+        <p>Щелко Алексей</p>
+        <p>8 группа</p>
+        <p>06.03.19</p>
+        <p>vip.shelko@mail.ru</p>
+      </li>
     </ul>
   </footer>
 
@@ -34,63 +36,82 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <a href="#" class="logo"><img src="img/logo.png" alt="Racoon"></a>
         <div class="search">Search
           <form class="search-form">
-            <u1>
-              <li><label for="search-line0">Автор:</label><input list="search-line0">
+            <u1 style="font-size:1vw;">
+              <li><input list="search-line0" placeholder="Автор">
                 <datalist id="search-line0">
-                  <option></option>
-                  <option></option>
-                  <option></option>
                 </datalist>
               </li>
-              <li> <label for="search-line1">Лайки:</label><input list="search-line1">
+              <li><input list="search-line1" placeholder="Кто лайкнул">
                 <datalist id="search-line1">
-                  <option></option>
-                  <option></option>
-                  <option></option>
                 </datalist>
               </li>
-              <li><label for="search-line2">HТеги:</label><input list="search-line2">
+              <li><input list="search-line2" placeholder="Хештеги">
                 <datalist id="search-line2">
-                  <option></option>
-                  <option></option>
-                  <option></option>
                 </datalist>
               </li>
 
             </u1>
             <div class="search-button">
-            <input type = "image" name = "apply" src="img/search.png" style="width:7%; height:10%;">
+              <input type="image" name="apply" onclick="doSearch" src="img/search.png" style="width:15%; height:10%;">
             </div>
 
           </form>
         </div>
-        <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
-            <template id="header-menu">
+        <div class="not-logIn">
+          <a href="">Войти</a>
+          <a href="">Регистрация</a>
+        </div>
+        <div class="user-logined">
+          <button class="add-photo"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+          <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
               <div class="user"><small> <small> <u></u> </small> </small>
                 <a href="#" class="usericon"><i class="fa fa-user" aria-hidden="true" style="color:black;"></i></a>
               </div>
-            </template>
-            <div class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i>
-              <div class="small-menu">
-                <ul style="padding:0">
-                  <li><a href="">Главная</a></li>
-                  <hr>
-                  <li><a href="">Моя страница</a></li>
-                  <hr>
-                  <li><a href="">Уведомления</a></li>
-                  <hr>
-                  <li><a href="">Добавить</a></li>
-                  <hr>
-                  <li><a href="">Поиск</a></li>
-                  <hr>
-                  <li><a href="">Помощь</a></li>
-                </ul>
-              </div>
-            </div>
+        </div>
+        <div class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i>
+          <div class="small-menu">
+            <ul style="padding:0">
+              <li><a href="">Главная</a></li>
+              <hr>
+              <li><a href="">Моя страница</a></li>
+              <hr>
+              <li><a href="">Уведомления</a></li>
+              <hr>
+              <li><a href="">Добавить</a></li>
+              <hr>
+              <li><a href="">Поиск</a></li>
+              <hr>
+              <a href="" class="exit">Выйти</a>
+            </ul>
+          </div>
+        </div>
 
       </div>
     </header>
 
+    <!-- <template id="refact"> -->
+    <div class="refactor-form">
+      <fieldset style="background-color: ghostwhite;">
+        <legend>Редактирование</legend>
+        <form id="refactor" action="index.html" method="post">
+          <img class="photo-refactor" src="" alt="Фото">
+          <div class="input-refactor">
+            <textarea class="descriprion-refactor" rows="5" cols="40" placeholder="Ваше описание"></textarea>
+            <textarea class="hashtags-refactor" rows="2" cols="40" placeholder="Ваши хештеги"></textarea>
+          </div>
+          <button id="refactorOk" type="button" name="button">Изменить</button>
+          <!-- <form id="upload-container" method="post">
+          <img id="upload-image" src="img/upload.svg">
+          <div>
+               <input id="file-input" type="file" name="file" multiple>
+               <label for="file-input">Выберите файл</label>
+               <span>или перетащите его сюда</span>
+          </div>
+     </form> -->
+        </form>
+      </fieldset>
+    </div>
+    <!-- </template> -->
 
     <template id="photo-template">
       <div class="full-post">
@@ -102,7 +123,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
             </div>
             <div class="photo"><img src="img/photo2.jpg" width="100%" height="100%" alt="Photo1"></div>
             <div class="likes">
-              <input class="button-like" type="image" src="img/like.png" width="5%" name="bottom" value="Like">
+              <input class="button-like" type="image" onclick="doLike" src="img/like.png" width="5%" name="bottom" value="Like">
               <div class="people-likes"></div>
             </div>
           </div>
@@ -110,13 +131,13 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
 
         <div class="all-comment-photo">
           <div class="comment-photo">
-            <input class="leave-comment" type="text" value="Комментировать">
+            <input class="leave-comment" type="text" placeholder="Комментировать">
             <div class="all-comments">
               <div class="username">
                 <u><b>Sasha18</b></u>:
               </div>
               <b><i>Какая красота!!!</i></b>
-              <button class="more-description" type="button" style="display: none; padding: 0px; border: none; visibility: hidden; background-color: white;"><small><i>еще</i></small></button>
+              <button class="more-description" type="button" onclick="doMoreDescr" style="display: none; padding: 0px; border: none; visibility: hidden; background-color: white;"><small><i>еще</i></small></button>
               <br>
               <div class="hashtags">
                 <a href="#">#круто</a>
@@ -139,8 +160,8 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
             </div>
           </div>
           <div class="buttons-user">
-            <button class="refactor" type="button">Изменить</button>
-            <button class="delete" type="button">Удалить</button>
+            <button class="refactor" type="button" onclick="doRefactor">Изменить</button>
+            <button class="delete" type="button" onclick="doDelete">Удалить</button>
           </div>
         </div>
       </div>
@@ -151,6 +172,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <script src="viev.js"></script>
   <script src="photoPosts.js"></script>
   <script src="class.js"></script>
+  <script src="handler.js"></script>
 </body>
 
 </html>
