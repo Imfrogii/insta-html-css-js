@@ -58,10 +58,7 @@ class View {
 
   static update(post) {
     let template = document.getElementById(post.id);
-    // View.showPhoto(post, template);
     View.showLikes(post, template);
-    View.showComments(post, template);
-    //  View.showButtonsUser(template);
   }
 
   static _createPost(post, postOfUser) {
@@ -115,11 +112,23 @@ class View {
     }
   }
 
+  static showAdd(photo) {
+    let addPopUp = document.querySelector('#add-form');
+    addPopUp.style.display = "grid";
+  }
+
   static showLikes(post, content) {
     let likes = content.querySelector(".people-likes");
     if (post.likes.length !== 0) {
       let endStr = post.likes[0].toString() + " и еще " + (post.likes.length - 1).toString() + " лайкнули";
       likes.innerHTML = endStr;
+      let username = main.getUserName();
+      for(let i of post.likes){
+        if(i === username){
+        let button = content.querySelector(".button-like");
+        button.src = "img/like2.png";
+      }
+    }
     } else likes.innerHTML = 0;
 
   }

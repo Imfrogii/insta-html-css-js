@@ -89,29 +89,58 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
       </div>
     </header>
 
-    <!-- <template id="refact"> -->
-    <div class="refactor-form">
+    <!-- <div class="refactor-form">
       <fieldset style="background-color: ghostwhite;">
         <legend>Редактирование</legend>
+        <div class="for-grid-refactor">
         <form id="refactor" action="index.html" method="post">
           <img class="photo-refactor" src="" alt="Фото">
           <div class="input-refactor">
-            <textarea class="descriprion-refactor" rows="5" cols="40" placeholder="Ваше описание"></textarea>
-            <textarea class="hashtags-refactor" rows="2" cols="40" placeholder="Ваши хештеги"></textarea>
+            <textarea class="descriprion-refactor" rows="5" cols="40" placeholder="Добавьте описание"></textarea>
+            <textarea class="hashtags-refactor" rows="2" cols="40" placeholder="Добавьте хештеги"></textarea>
           </div>
           <button class="refactorOk" type="button" name="button">Изменить</button>
-          <!-- <form id="upload-container" method="post">
-          <img id="upload-image" src="img/upload.svg">
-          <div>
-               <input id="file-input" type="file" name="file" multiple>
-               <label for="file-input">Выберите файл</label>
-               <span>или перетащите его сюда</span>
-          </div>
-     </form> -->
+
         </form>
+        </div>
+      </fieldset>
+    </div> -->
+    <div class="refactor-form">
+      <fieldset style="background-color: ghostwhite;">
+        <legend>Редактирование</legend>
+        <div class="for-grid">
+        <form id="refactor"action="index.html" method="post">
+          <img class="photo-refactor" src="" alt="Фото">
+        </form>
+        <div id="input-refactor">
+          <textarea class="descriprion-refactor" rows="5" cols="40" placeholder="Добавьте описание"></textarea>
+          <textarea class="hashtags-refactor" rows="2" cols="40" placeholder="Добавьте хештеги"></textarea>
+          <button class="refactorOk" type="button" name="button">Изменить</button>
+        </div>
+        </div>
       </fieldset>
     </div>
-    <!-- </template> -->
+
+    <div id="add-form">
+      <fieldset style="background-color: ghostwhite;">
+        <legend>Добавление</legend>
+        <div class="for-grid">
+        <form class="upload-container" method="post" tabindex="0">
+          <img class="to-upload-image" src="img/upload.svg">
+          <div id="upload-photo">
+            <input id="file-input" type="file" name="file" accept="image/*">
+            <label for="file-input">Выберите файл</label>
+            <span>или перетащите его сюда</span>
+          </div>
+        </form>
+        <div id="input-add">
+          <textarea class="descriprion-add" rows="5" cols="40" placeholder="Добавьте описание"></textarea>
+          <textarea class="hashtags-add" rows="2" cols="40" placeholder="Добавьте хештеги"></textarea>
+          <button class="add-ok" type="button" name="button">Готово</button>
+        </div>
+        </div>
+      </fieldset>
+    </div>
 
     <template id="photo-template">
       <div class="full-post">

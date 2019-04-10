@@ -18,8 +18,12 @@ class PostCollection {
     }
     // top = top || 10;
     let answer = [];
-    if (filter===undefined) {
-      answer = this._photoPosts.slice(skip, top + skip);
+    let counter = 0;
+    for (let key in filter) {
+      counter++;
+    }
+    if (filter === undefined||counter === 0) {
+        answer = this._photoPosts.slice(skip, top + skip);
     } else {
       let filteredArr = this._findFilter(filter);
       if (skip > filteredArr.length) {
@@ -247,8 +251,7 @@ Array.prototype.clean = function(deleteValue) {
   return this;
 };
 
-let posts = [
-];
+let posts = [];
 
 let morePosts = [{
     descriprion: 'за Орудууу[2]',

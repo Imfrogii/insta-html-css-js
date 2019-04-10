@@ -42,7 +42,7 @@ let main = (function() {
       author: 'User1',
       photoLink: 'img/photo3.jpg',
       hashtags: ["#ку"],
-      likes: ["JSa"],
+      likes: ["JSa","User1"],
     },
     {
       id: '6',
@@ -290,9 +290,9 @@ main.get(0, 2);
 // });
 // main.deletePost(2);
 // main.deletePost(5);
-// main.get({
-//   author: "Aleks"
-// });
+main.get({
+  author: "Aleks"
+});
 // main.get({
 //   descriprion: "Hi Guys",
 //   hashtags: ["#Js"]

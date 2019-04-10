@@ -42,11 +42,14 @@ let postId;
 function showRefactor(event) {
   postId = this.id;
   View.showRefact(main.getPhotoPost(postId));
-  document.addEventListener('mousedown', function(e) {
-    if (e.target.closest('.refactor-form') === null) {
-      refactorPopUp.style.display = 'none';
-    }
-  });
+  document.addEventListener('mousedown', closeRefactor);
+}
+
+function closeRefactor(event) {
+  if (event.target.closest('.refactor-form') === null) {
+    refactorPopUp.style.display = 'none';
+    document.removeEventListener('mousedown', closeRefactor);
+  }
 }
 
 const buttonRefactorPopUp = refactorPopUp.querySelectorAll(".refactorOk");
@@ -73,6 +76,7 @@ function doRefactor(event) {
         i.addEventListener("click", doDelete);
       for (let i of like)
         i.addEventListener("click", doLike);
+      document.removeEventListener('mousedown', closeRefactor);
     }
   } else
     alert("Некорректные данные");
@@ -88,12 +92,84 @@ function doSearch(event) {
 }
 
 const add = document.getElementsByClassName("add-photo")[0];
-add.addEventListener("click", doAdd);
+add.addEventListener("click", showAdd);
 
-function doAdd(event) {
-  alert("Добавлено");
+const addPopUp = document.querySelector('#add-form');
+
+function showAdd(event) {
+  View.showAdd();
+  document.addEventListener('mousedown', closeAdd);
 }
 
+function closeAdd(event) {
+  if (event.target.closest('#add-form') === null) {
+    addPopUp.style.display = 'none';
+    document.removeEventListener('mousedown', closeAdd);
+  }
+}
+
+const buttonAddPopUp = addPopUp.querySelectorAll(".add-ok");
+for (let i of buttonAddPopUp)
+  i.addEventListener("click", doAdd);
+
+function doAdd(event) {
+  event.preventDefault();
+  let decript = addPopUp.querySelector(".descriprion-add");
+  let hash = addPopUp.querySelector(".hashtags-add");
+  let post = {};
+  if (decript.value !== "") {
+    post.descriprion = decript.value;
+    if (hash.value !== "")
+      post.hashtags = hash.value.split(" ");
+      let img = document.getElementsByClassName("to-upload-image")[0];
+    post.photoLink = img.src;
+  } else {
+    alert("Добавьте описание");
+    return;
+  }
+  if (main.add(post)) {
+    alert("Добавлено успешно")
+    addPopUp.style.display = "none";
+    for (let i of refactor)
+      i.addEventListener("click", showRefactor);
+    for (let i of deletee)
+      i.addEventListener("click", doDelete);
+    for (let i of like)
+      i.addEventListener("click", doLike);
+  } else
+    alert("Некорректные данные");
+}
+
+let dropZone = document.getElementsByClassName("upload-container")[0];
+dropZone.addEventListener("dragover", function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.add('dragover');
+});
+dropZone.addEventListener("dragenter", function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener("dragleave", function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.remove('dragover');
+});
+dropZone.addEventListener('drop', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+     dropZone.classList.remove('dragover');
+     let reader = new FileReader();
+     let files = e.dataTransfer.files;
+     // sendFiles(files);
+     reader.onloadend = function () {
+       let img = document.getElementsByClassName("to-upload-image")[0];
+       img.src = reader.result;
+  }
+     let link = reader.readAsDataURL(files[0]);
+});
 
 const moreDescr = document.getElementsByClassName("more-description");
 for (let i of moreDescr)
