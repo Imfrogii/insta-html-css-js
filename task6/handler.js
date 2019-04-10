@@ -20,8 +20,8 @@ function doLike(event) {
     post.likes.push(userName);
   }
   View.update(post);
+  console.log(post.likes);
 }
-
 
 const deletee = document.getElementsByClassName("delete");
 for (let i of deletee)
@@ -37,23 +37,11 @@ for (let i of refactor)
   i.addEventListener("click", showRefactor);
 
 const refactorPopUp = document.querySelector('.refactor-form');
+let postId;
 
 function showRefactor(event) {
-  refactorPopUp.style.display = "grid";
-  let photo = main.getPhotoPost(this.id);
-  const photoRefactor = refactorPopUp.querySelector("img");
-  photoRefactor.src = photo.photoLink;
-  const descriptionRefactor = refactorPopUp.querySelector(".descriprion-refactor");
-  descriptionRefactor.innerHTML = photo.descriprion;
-  refactorPopUp.setAttribute("id", this.id);
-  const hashtagsRefactor = refactorPopUp.querySelector(".hashtags-refactor");
-  if (photo.hashtags !== {}) {
-    let string = "";
-    for (let i of photo.hashtags)
-      string += i + " ";
-    string = string.slice(0, -1);
-    hashtagsRefactor.innerHTML = string;
-  }
+  postId = this.id;
+  View.showRefact(main.getPhotoPost(postId));
   document.addEventListener('mousedown', function(e) {
     if (e.target.closest('.refactor-form') === null) {
       refactorPopUp.style.display = 'none';
@@ -61,32 +49,33 @@ function showRefactor(event) {
   });
 }
 
-
-const buttonRefactorPopUp = refactorPopUp.querySelector("#refactorOk");
-buttonRefactorPopUp.addEventListener("click", doRefactor)
+const buttonRefactorPopUp = refactorPopUp.querySelectorAll(".refactorOk");
+for (let i of buttonRefactorPopUp)
+  i.addEventListener("click", doRefactor);
 
 function doRefactor(event) {
   event.preventDefault();
   let decript = refactorPopUp.querySelector(".descriprion-refactor");
   let hash = refactorPopUp.querySelector(".hashtags-refactor");
-  let post = main.getPhotoPost(refactorPopUp.id);
+  let post = main.getPhotoPost(postId);
   let newPost = {};
   newPost = Object.assign(newPost, post);
   newPost.descriprion = decript.value;
   newPost.hashtags = hash.value.split(" ");
   if (PostCollection._validatePhotoPost(newPost)) {
     if (confirm("Вы действительно хотите редактировать пост?")) {
-      post.descriprion = decript.value;
-      post.hashtags = hash.value.split(" ");
-      refactorPopUp.style.display = 'none';
+      post = newPost;
       main.editPost(main.getId(post), post);
+      refactorPopUp.style.display = "none";
       for (let i of refactor)
         i.addEventListener("click", showRefactor);
       for (let i of deletee)
         i.addEventListener("click", doDelete);
+      for (let i of like)
+        i.addEventListener("click", doLike);
     }
   } else
-    alert("Не корректные данные");
+    alert("Некорректные данные");
 }
 
 

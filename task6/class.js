@@ -5,7 +5,7 @@ let main = (function() {
       createdAt: new Date('2018-06-03T23:00:00'),
       author: 'User1',
       photoLink: 'img/photo1.jpg',
-      hashtags: ["#ку", "#привет", "#ао"],
+      hashtags: ["#ку", "#привет", "#ао","#ао","#ао","#ао","#ао","#ао","#ао","#ао","#ао"],
       likes: ["nnds", "dfg", "yyeh", "jsdfg"],
     },
     {
@@ -39,7 +39,7 @@ let main = (function() {
       id: '5',
       descriprion: 'Женщины - крута',
       createdAt: new Date('2018-12-12T23:00:00'),
-      author: 'Women',
+      author: 'User1',
       photoLink: 'img/photo3.jpg',
       hashtags: ["#ку"],
       likes: ["JSa"],
@@ -206,9 +206,11 @@ let main = (function() {
     show() {
       View.showHeader(userName);
     },
+
     showHelp() {
       View.showExamples(photoPosts, lastFilter);
     },
+
     get(skip = 0, top = 10, filterConfig) {
       if (typeof(skip) === "object") {
         filterConfig = skip;
@@ -282,19 +284,19 @@ let main = (function() {
 
 main.show();
 main.get(0, 2);
-main.editPost('1', {
-  descriprion: "Hi Guys",
-  hashtags: ["#Js", "#JavaScript"]
-});
-main.deletePost(2);
+// main.editPost('1', {
+//   descriprion: "Hi Guys",
+//   hashtags: ["#Js", "#JavaScript"]
+// });
+// main.deletePost(2);
 // main.deletePost(5);
-main.get({
-  author: "Aleks"
-});
-main.get({
-  descriprion: "Hi Guys",
-  hashtags: ["#Js"]
-});
+// main.get({
+//   author: "Aleks"
+// });
+// main.get({
+//   descriprion: "Hi Guys",
+//   hashtags: ["#Js"]
+// });
 main.logIn("User1", "111");
 main.get(0, 5);
 // main.logIn("aa","12");

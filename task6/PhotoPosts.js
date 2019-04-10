@@ -119,7 +119,7 @@ class PostCollection {
 
   get(id) {
     for (let item of this._photoPosts) {
-      if (item.id === id) {
+      if (item.id == id) {
         return item;
       }
     }

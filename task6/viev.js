@@ -61,21 +61,22 @@ class View {
     // View.showPhoto(post, template);
     View.showLikes(post, template);
     View.showComments(post, template);
+    //  View.showButtonsUser(template);
   }
 
   static _createPost(post, postOfUser) {
     let template = document.querySelector("#photo-template");
     let content = template.content.cloneNode(true);
     let all = (content.querySelector(".all-photos")).parentNode;
-    all.setAttribute("id", post.id);
+    all.setAttribute("id", main.getId(post));
     let buttons = content.querySelector(".buttons-user");
     let buttonLike = content.querySelector(".button-like");
-    buttonLike.setAttribute("id", post.id);
+    buttonLike.setAttribute("id", main.getId(post));
     if (buttons !== "undefined") {
       let del = buttons.querySelector(".delete");
-      del.setAttribute("id", post.id);
+      del.setAttribute("id", main.getId(post));
       let refactor = buttons.querySelector(".refactor");
-      refactor.setAttribute("id", post.id);
+      refactor.setAttribute("id", main.getId(post));
     }
     View.showPhoto(post, content);
     View.showHeaderPost(post, content);
@@ -96,10 +97,23 @@ class View {
     template.parentNode.appendChild(View._createPost(post, postOfUser));
   }
 
-  // static showPopUp() {
-  //   let template = document.querySelector("#refact");
-  //   template.parentNode.appendChild(template.firstChild);
-  // }
+  static showRefact(photo) {
+    let refactorPopUp = document.querySelector('.refactor-form');
+    refactorPopUp.style.display = "grid";
+    let photoRefactor = refactorPopUp.querySelector("img");
+    photoRefactor.src = photo.photoLink;
+    let descriptionRefactor = refactorPopUp.querySelector(".descriprion-refactor");
+    descriptionRefactor.value = photo.descriprion;
+    // refactorPopUp.setAttribute("id", this.id);
+    let hashtagsRefactor = refactorPopUp.querySelector(".hashtags-refactor");
+    if (photo.hashtags !== {}) {
+      let string = "";
+      for (let i of photo.hashtags)
+        string += i + " ";
+      string = string.slice(0, -1);
+      hashtagsRefactor.value = string;
+    }
+  }
 
   static showLikes(post, content) {
     let likes = content.querySelector(".people-likes");
@@ -139,10 +153,14 @@ class View {
       button.style.visibility = "visible";
       button.style.display = "inline";
     }
-    let hashtags = template.querySelectorAll(".hashtags a");
+    let hashtags = template.querySelector(".hashtags");
     if (post.hashtags.length !== 0)
-      for (let i = 0; i < post.hashtags.length; i++)
-        hashtags[i].innerHTML = post.hashtags[i];
+      for (let i = 0; i < post.hashtags.length; i++) {
+        let tags = document.createElement("a");
+        hashtags.appendChild(tags);
+        tags.innerHTML = post.hashtags[i];
+        tags.style.display = "inline-block";
+      }
   }
 
   static showExamples(photoPosts, lastFilter) {
@@ -180,7 +198,6 @@ class View {
   }
 
 
-
   static delete(id) {
     let template = document.querySelector(".full-post").parentNode;
     let toDel = document.getElementById(id);
@@ -195,7 +212,7 @@ class View {
     for (let i of node) {
       if (i.id == post.id) {
         if (i !== null)
-          main.replaceChild(View._createPost(post, true), i);
+          main.replaceChild(View._createPost(post, true, true), i);
         break;
       }
     }
