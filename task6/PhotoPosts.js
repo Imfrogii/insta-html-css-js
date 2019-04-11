@@ -29,7 +29,7 @@ class PostCollection {
       if (skip > filteredArr.length) {
         return [];
       }
-      answer = filteredArr.slice(skip, top);
+      answer = filteredArr.slice(skip, top+skip);
     }
     return answer.sort(this._sortDates);
   }

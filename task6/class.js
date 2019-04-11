@@ -191,6 +191,10 @@ let main = (function() {
       return photoPosts._photoPosts;
     },
 
+    getLastFilter(){
+      return lastFilter;
+    },
+
     getUserName() {
       return userName;
     },
@@ -225,7 +229,6 @@ let main = (function() {
       }
       View.clear();
       let showPhotoPosts = photoPosts.getPage(skip, top, filterConfig);
-
       for (let item of showPhotoPosts) {
         if (userName === item.author)
           View.showPost(item, true);
@@ -246,7 +249,6 @@ let main = (function() {
     deletePost(id) {
       if (userName !== "") {
         if (photoPosts.remove(id)) {
-          // this.get(0, 10, last3Filters[inWhichFilter]);
           View.delete(id);
           return true;
         } else return false;
@@ -256,7 +258,6 @@ let main = (function() {
     editPost(id, post) {
       if (userName !== "") {
         if (photoPosts.edit(id, post)) {
-          // this.get(0, 10, last3Filters[inWhichFilter]);
           View.refactor(id, post);
           return true;
         } else return false;
@@ -266,17 +267,23 @@ let main = (function() {
 
     logIn(username, password) {
       userName = username;
-      View.showHeader(username);
+      alert("Добро пожаловать "+userName);
+      View.showHeader(userName);
+      this.get(lastFilter);
     },
 
     logOut() {
       userName = "";
       View.showHeader(userName);
+      this.get(lastFilter);
     },
 
     signIn(username, password, mail) {
       userName = username;
-    }
+      alert("Добро пожаловать "+userName);
+      View.showHeader(userName);
+      this.get(lastFilter);
+    },
 
 
   }
@@ -291,7 +298,7 @@ main.get(0, 2);
 // main.deletePost(2);
 // main.deletePost(5);
 main.get({
-  author: "Aleks"
+  author: "User1"
 });
 // main.get({
 //   descriprion: "Hi Guys",

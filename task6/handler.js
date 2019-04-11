@@ -1,4 +1,3 @@
-let userName = main.getUserName();
 const like = document.getElementsByClassName("button-like");
 for (let i of like)
   i.addEventListener("click", doLike);
@@ -6,6 +5,9 @@ for (let i of like)
 function doLike(event) {
   let post = main.getPhotoPost(this.id);
   let check = false;
+  let userName = main.getUserName();
+  if (userName ==="")
+    return false;
   for (let i of post.likes) {
     if (userName === i) {
       check = true;
@@ -52,6 +54,15 @@ function closeRefactor(event) {
   }
 }
 
+function addButtonsListeners() {
+  for (let i of refactor)
+    i.addEventListener("click", showRefactor);
+  for (let i of deletee)
+    i.addEventListener("click", doDelete);
+  for (let i of like)
+    i.addEventListener("click", doLike);
+}
+
 const buttonRefactorPopUp = refactorPopUp.querySelectorAll(".refactorOk");
 for (let i of buttonRefactorPopUp)
   i.addEventListener("click", doRefactor);
@@ -70,33 +81,77 @@ function doRefactor(event) {
       post = newPost;
       main.editPost(main.getId(post), post);
       refactorPopUp.style.display = "none";
-      for (let i of refactor)
-        i.addEventListener("click", showRefactor);
-      for (let i of deletee)
-        i.addEventListener("click", doDelete);
-      for (let i of like)
-        i.addEventListener("click", doLike);
+      addButtonsListeners();
       document.removeEventListener('mousedown', closeRefactor);
     }
   } else
     alert("Некорректные данные");
 }
 
-
-const search = document.getElementsByClassName("search-button")[0];
+const searchForm = document.getElementsByClassName("search-form")[0];
+const search = searchForm.getElementsByClassName("search-button")[0];
 search.addEventListener("click", doSearch);
+
+const linkSmallSearchForm = document.getElementById("small-search");
+const smallSearchForm = linkSmallSearchForm.querySelector(".small-search-form");
+linkSmallSearchForm.addEventListener("click",function(event){
+  event.preventDefault();
+  smallSearchForm.style.display = "block";
+});
+const smallSearch = smallSearchForm.querySelector("#small-search-button")
+smallSearch.addEventListener("click", doSmallSearch);
 
 function doSearch(event) {
   event.preventDefault();
+  let inputes = searchForm.getElementsByTagName("input");
+  let author = inputes[0];
+  let likes = inputes[1];
+  let hashtags = inputes[2];
+  let filter = {};
+  if (author.value !== "")
+    filter.author = author.value;
+  if (likes.value !== "")
+    filter.likes = likes.value;
+  if (hashtags.value !== "")
+    filter.hashtags = hashtags.value.split(" ");
+  main.get(filter);
   alert("Поиск");
+}
+
+function doSmallSearch(event) {
+  event.preventDefault();
+  let inputes = smallSearchForm.getElementsByTagName("input");
+  let author = inputes[0];
+  let likes = inputes[1];
+  let hashtags = inputes[2];
+  let filter = {};
+  if (author.value !== "")
+    filter.author = author.value;
+  if (likes.value !== "")
+    filter.likes = likes.value;
+  if (hashtags.value !== "")
+    filter.hashtags = hashtags.value.split(" ");
+  main.get(filter);
+  alert("Поиск");
+}
+
+function findOnClickHashtags(event) {
+  event.preventDefault();
+  let filter = {};
+  filter.hashtags = [];
+  filter.hashtags.push(this.text);
+  main.get(filter);
 }
 
 const add = document.getElementsByClassName("add-photo")[0];
 add.addEventListener("click", showAdd);
+const smallAdd = document.getElementById("small-add");
+smallAdd.addEventListener("click", showAdd);
 
 const addPopUp = document.querySelector('#add-form');
 
 function showAdd(event) {
+  event.preventDefault();
   View.showAdd();
   document.addEventListener('mousedown', closeAdd);
 }
@@ -121,7 +176,7 @@ function doAdd(event) {
     post.descriprion = decript.value;
     if (hash.value !== "")
       post.hashtags = hash.value.split(" ");
-      let img = document.getElementsByClassName("to-upload-image")[0];
+    let img = document.getElementsByClassName("to-upload-image")[0];
     post.photoLink = img.src;
   } else {
     alert("Добавьте описание");
@@ -130,12 +185,7 @@ function doAdd(event) {
   if (main.add(post)) {
     alert("Добавлено успешно")
     addPopUp.style.display = "none";
-    for (let i of refactor)
-      i.addEventListener("click", showRefactor);
-    for (let i of deletee)
-      i.addEventListener("click", doDelete);
-    for (let i of like)
-      i.addEventListener("click", doLike);
+    addButtonsListeners();
   } else
     alert("Некорректные данные");
 }
@@ -160,15 +210,15 @@ dropZone.addEventListener("dragleave", function(e) {
 dropZone.addEventListener('drop', function(e) {
   e.preventDefault();
   e.stopPropagation();
-     dropZone.classList.remove('dragover');
-     let reader = new FileReader();
-     let files = e.dataTransfer.files;
-     // sendFiles(files);
-     reader.onloadend = function () {
-       let img = document.getElementsByClassName("to-upload-image")[0];
-       img.src = reader.result;
+  dropZone.classList.remove('dragover');
+  let reader = new FileReader();
+  let files = e.dataTransfer.files;
+  // sendFiles(files);
+  reader.onloadend = function() {
+    let img = document.getElementsByClassName("to-upload-image")[0];
+    img.src = reader.result;
   }
-     let link = reader.readAsDataURL(files[0]);
+  let link = reader.readAsDataURL(files[0]);
 });
 
 const moreDescr = document.getElementsByClassName("more-description");
@@ -198,19 +248,50 @@ sign.addEventListener("click", doSign);
 
 function doLog(event) {
   event.preventDefault();
-  alert("Вход");
+  let userLogin = logSign.querySelectorAll("input");
+  let password = userLogin[1];
+  let reg = /^[A-Za-z0-9]{3,}$/;
+  if (reg.test(userLogin[0].value) && password.value !== "") {
+    main.logIn(userLogin[0].value, password);
+    userLogin[0].value = "";
+    password.value = "";
+  } else alert("Неправильный логин или пароль");
 }
 
 function doSign(event) {
   event.preventDefault();
-  alert("Регистрация");
+  let userLogin = logSign.querySelectorAll("input");
+  let email = userLogin[3].value;
+  let password = userLogin[4].value;
+  let confirmPassword = userLogin[5].value;
+  let reg = /^[A-Za-z0-9]{3,}$/;
+  if (reg.test(userLogin[2].value) && password.value !== "" && validate(email)) {
+    if (password === confirmPassword) {
+      main.signIn(userLogin[2].value, password, email);
+      userLogin[2].value = "";
+      userLogin[3].value = "";
+      userLogin[4].value = "";
+      userLogin[5].value = "";
+    } else alert("Пароли не совпадают");
+  } else alert("Введите корректные данные");
 }
 
-const exit = document.getElementsByClassName("exit")[0];
-exit.addEventListener("click", doExit);
+function validate(email) {
+  let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (reg.test(email) == false) {
+    return false;
+  }
+  return true;
+}
+
+const exit = document.getElementsByClassName("exit");
+for(let i of exit)
+i.addEventListener("click", doExit);
 
 function doExit(event) {
   event.preventDefault();
   main.logOut();
+  // for (let i of like)
+  //   i.removeEventListener("click", doLike);
   alert("Выход");
 }

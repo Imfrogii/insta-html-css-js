@@ -103,6 +103,7 @@ li {
 }
 
 .user {
+  position: relative;
   display: inline-block;
   margin-left: 5%;
   margin-top: 4.5px;
@@ -110,7 +111,19 @@ li {
   white-space: nowrap;
   max-width: 2vw;
 }
-
+.user:hover .logOut{
+  display: block;
+  /* background-color: blue; */
+}
+.logOut{
+  display: none;
+  position: absolute;
+  padding-top: 0.5vw;
+}
+.logOut a{
+  text-decoration-line:none;
+  color: red;
+}
 .add-photo {
   border: none;
   background-color: white;
@@ -119,6 +132,10 @@ li {
 
 .add-photo i {
   font-size: 150%;
+}
+
+.small-search-form{
+  display: none;
 }
 
 .buttons-user button {
@@ -204,13 +221,57 @@ li {
   margin-right: 5%;
   margin-top: 8px;
   float: right;
-  /* display: inline-block; */
+}
+
+.not-logIn div{
+  display: inline-block;
+  margin-left: 1vw;
 }
 
 .not-logIn a {
-  margin-right: 5%;
   text-decoration: none;
   color: blue;
+}
+
+.toLog{
+  position: relative;
+}
+
+.toLog:hover ul{
+  display: block;
+  padding-top: 15px;
+  margin: 0;
+  padding-left: 0;
+}
+
+.toLog ul{
+  display: none;
+  position: absolute;
+}
+
+.toLog input{
+  width:140px;
+}
+
+.toSign{
+  position: relative;
+}
+
+.toSign:hover ul{
+  display: block;
+  padding-top: 15px;
+  margin: 0;
+  margin-left:-55px;
+  padding-left: 0;
+}
+
+.toSign ul{
+  display: none;
+  position: absolute;
+}
+
+.toSign input{
+  width:140px;
 }
 
 .exit {
@@ -330,6 +391,14 @@ li {
   width: 69.2%;
 }
 
+.hashtags-refactor{
+  color:rgb(46, 80, 166);
+}
+
+.hashtags-add{
+  color:rgb(46, 80, 166);
+}
+
 #refactor {
   display: grid;
 }
@@ -372,12 +441,6 @@ legend {
 .input-refactor textarea {
   margin-top: 20px;
   font-size: 2.5vw;
-}
-
-.refactorOk {
-  width: 30%;
-  margin-left: 30%;
-  font-size: 1.5vw;
 }
 
 .for-grid {

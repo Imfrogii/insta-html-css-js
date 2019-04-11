@@ -58,14 +58,30 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
           </form>
         </div>
         <div class="not-logIn">
-          <a href="">Войти</a>
-          <a href="">Регистрация</a>
+          <div class="toLog"><a href="">Войти</a>
+            <ul>
+              <li><input type="text" placeholder="Логин >3 eng"></li>
+              <li><input type="password" placeholder="Пароль"></li>
+            </div>
+          <div class="toSign"><a href="">Регистрация</a>
+            <ul>
+              <li><input type="text" placeholder="Логин >3 eng"></li>
+              <li><input type="email" placeholder="Почта(*@*.**)"></li>
+              <li><input type="password" placeholder="Пароль"></li>
+              <li><input type="password" placeholder="Повторите пароль"></li>
+
+            </div>
         </div>
         <div class="user-logined">
           <button class="add-photo"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
           <a href="#" class="comments"><i class="fa fa-comments-o" aria-hidden="true" style="color:black;"></i><a>
               <div class="user"><small> <small> <u></u> </small> </small>
                 <a href="#" class="usericon"><i class="fa fa-user" aria-hidden="true" style="color:black;"></i></a>
+                <div class="logOut">
+                  <u1>
+                    <li><a href="" class="exit"><small>Выйти</small></a></li>
+                  </u1>
+                </div>
               </div>
         </div>
         <div class="ifSmall"><i class="fa fa-th" aria-hidden="true" style="font-size:150%;"></i>
@@ -77,34 +93,38 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
               <hr>
               <li><a href="">Уведомления</a></li>
               <hr>
-              <li><a href="">Добавить</a></li>
+              <li><a href="" id ="small-add">Добавить</a></li>
               <hr>
-              <li><a href="">Поиск</a></li>
+              <li><a href="" id = "small-search">Поиск
+              <form class="small-search-form">
+                <u1>
+                  <li><input list="small-search-line0" placeholder="Автор">
+                    <datalist id="small-search-line0">
+                    </datalist>
+                  </li>
+                  <li><input list="small-search-line1" placeholder="Кто лайкнул">
+                    <datalist id="small-search-line1">
+                    </datalist>
+                  </li>
+                  <li><input list="small-search-line2" placeholder="Хештеги">
+                    <datalist id="small-search-line2">
+                    </datalist>
+                  </li>
+                </u1>
+                <div class="search-button" id = 'small-search-button'>
+                  <input type="image" name="apply" onclick="doSearch" src="img/search.png" style="width:15%; height:10%;">
+                </div>
+                </form>
+                </a>
+                </li>
               <hr>
               <a href="" class="exit">Выйти</a>
             </ul>
           </div>
         </div>
-
       </div>
     </header>
 
-    <!-- <div class="refactor-form">
-      <fieldset style="background-color: ghostwhite;">
-        <legend>Редактирование</legend>
-        <div class="for-grid-refactor">
-        <form id="refactor" action="index.html" method="post">
-          <img class="photo-refactor" src="" alt="Фото">
-          <div class="input-refactor">
-            <textarea class="descriprion-refactor" rows="5" cols="40" placeholder="Добавьте описание"></textarea>
-            <textarea class="hashtags-refactor" rows="2" cols="40" placeholder="Добавьте хештеги"></textarea>
-          </div>
-          <button class="refactorOk" type="button" name="button">Изменить</button>
-
-        </form>
-        </div>
-      </fieldset>
-    </div> -->
     <div class="refactor-form">
       <fieldset style="background-color: ghostwhite;">
         <legend>Редактирование</legend>
@@ -182,7 +202,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
                 </div>
                 <i>ТЫ ДОЛЖЕН ВЗЯТЬ МЕНЯ С СОБОЙ!!! Пожалуйста:(</i>
               </div> -->
-              <button class="more-comments" type="button" style="margin-left: 30%; background-color: white;" value="Больше"><small><small><i>Больше</i></small></small></button>
+              <button class="more-comments" type="button" style="margin-left: 30%; display:none; background-color: white;" value="Больше"><small><small><i>Больше</i></small></small></button>
             </div>
           </div>
           <div class="buttons-user">
@@ -195,10 +215,11 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <button class="more-photos" type="button" style=" width: 50%; margin-left: 30%; margin-top: 8%; border: none; background-color: white;" value="Больше "><i>Больше фото</i></button>
   </div>
   <!-- <script src="script.js"></script> -->
+  <script src="handler.js"></script>
   <script src="viev.js"></script>
   <script src="photoPosts.js"></script>
   <script src="class.js"></script>
-  <script src="handler.js"></script>
+
 </body>
 
 </html>

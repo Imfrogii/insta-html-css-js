@@ -69,18 +69,20 @@ class View {
     let buttons = content.querySelector(".buttons-user");
     let buttonLike = content.querySelector(".button-like");
     buttonLike.setAttribute("id", main.getId(post));
-    if (buttons !== "undefined") {
-      let del = buttons.querySelector(".delete");
-      del.setAttribute("id", main.getId(post));
-      let refactor = buttons.querySelector(".refactor");
-      refactor.setAttribute("id", main.getId(post));
-    }
+    let del = buttons.querySelector(".delete");
+    del.setAttribute("id", main.getId(post));
+    let refactor = buttons.querySelector(".refactor");
+    refactor.setAttribute("id", main.getId(post));
     View.showPhoto(post, content);
     View.showHeaderPost(post, content);
     View.showLikes(post, content);
     View.showComments(post, content);
-    if (postOfUser)
+    if (postOfUser) {
       View.showButtonsUser(content);
+      refactor.addEventListener("click", showRefactor);
+      del.addEventListener("click", doDelete);
+    }
+    buttonLike.addEventListener("click", doLike);
     return content;
   }
 
@@ -101,7 +103,6 @@ class View {
     photoRefactor.src = photo.photoLink;
     let descriptionRefactor = refactorPopUp.querySelector(".descriprion-refactor");
     descriptionRefactor.value = photo.descriprion;
-    // refactorPopUp.setAttribute("id", this.id);
     let hashtagsRefactor = refactorPopUp.querySelector(".hashtags-refactor");
     if (photo.hashtags !== {}) {
       let string = "";
@@ -123,12 +124,12 @@ class View {
       let endStr = post.likes[0].toString() + " и еще " + (post.likes.length - 1).toString() + " лайкнули";
       likes.innerHTML = endStr;
       let username = main.getUserName();
-      for(let i of post.likes){
-        if(i === username){
-        let button = content.querySelector(".button-like");
-        button.src = "img/like2.png";
+      for (let i of post.likes) {
+        if (i === username) {
+          let button = content.querySelector(".button-like");
+          button.src = "img/like2.png";
+        }
       }
-    }
     } else likes.innerHTML = 0;
 
   }
@@ -169,6 +170,7 @@ class View {
         hashtags.appendChild(tags);
         tags.innerHTML = post.hashtags[i];
         tags.style.display = "inline-block";
+        tags.addEventListener("click", findOnClickHashtags);
       }
   }
 
@@ -176,14 +178,11 @@ class View {
     let template = document.getElementsByClassName("search-form")[0];
     let datalist = template.querySelector("#search-line0");
     for (let i = 0; i < photoPosts._photoPosts.length; i++) {
-      // datalist.option.innerHTML = photoPosts[i].author;
       let option = document.createElement('option');
       option.text = photoPosts._photoPosts[i].author; //просто чтобы показать, в итоге будет по зарегистрированным пользователям
       datalist.appendChild(option);
     }
     datalist = template.querySelector("#search-line1");
-    // option = datalist.querySelectorAll("option");
-    // for (let i = 0; i < inWhichFilter; i++) {
     for (let i = 0; i < photoPosts._photoPosts.length; i++) { //просто чтобы показать, в итоге будет по зарегистрированным пользователям
       if (lastFilter.likes !== undefined) {
         let option = document.createElement('option');
@@ -192,9 +191,7 @@ class View {
       }
     }
     datalist = template.querySelector("#search-line2");
-    // option = datalist.querySelectorAll("option");
     let str = "";
-    // for (let i = 0; i < inWhichFilter; i++) {
     if (lastFilter.hashtags !== undefined) {
       for (let item of lastFilter.hashtags) {
         str += item + " ";
@@ -203,7 +200,6 @@ class View {
       option.text = str;
       datalist.appendChild(option);
     }
-    // template.appendChild(datalist);
   }
 
 
