@@ -1,11 +1,17 @@
 class PostCollection {
   constructor(posts) {
-    this._photoPosts = posts; //.slice();
+    //.slice();
+    this._numMore = 0;
     this._sortDates = function compare(a, b) {
       return b.createdAt - a.createdAt;
     }
+    posts = posts.sort(this._sortDates);
+    this._photoPosts = posts;
   }
 
+  getNumMore(){
+    return this._numMore;
+  }
 
   getPage(skip = 0, top = 10, filter) {
     if (typeof(skip) === "object") {
@@ -23,12 +29,15 @@ class PostCollection {
       counter++;
     }
     if (filter === undefined||counter === 0) {
+        this._numMore = this._photoPosts.slice(top + skip).length;
         answer = this._photoPosts.slice(skip, top + skip);
     } else {
       let filteredArr = this._findFilter(filter);
       if (skip > filteredArr.length) {
         return [];
       }
+      // if(filteredArr.length>=10)
+      this._numMore = filteredArr.slice(top + skip).length;
       answer = filteredArr.slice(skip, top+skip);
     }
     return answer.sort(this._sortDates);
@@ -106,7 +115,7 @@ class PostCollection {
         for (let item of arrFilter) {
           let flag = false;
           for (let i = 0; i < item.likes.length; i++) {
-            if (item.likes[i].toLowerCase() === arrFilter.likes.toLowerCase()) {
+            if (item.likes[i].toLowerCase() === filter.likes.toLowerCase()) {
               flag = true;
             }
           }

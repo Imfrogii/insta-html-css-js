@@ -52,10 +52,19 @@ class View {
         full[i].parentNode.removeChild(full[i]);
     }
     let more = document.getElementsByClassName("more-photos")[0];
-    if (more.firstChild)
-      more.removeChild(more.firstChild);
+    if(more)
+      more.parentNode.removeChild(more);
   }
-
+  static showMorePostsButton(){
+    let more = document.getElementsByClassName("more-photos-template")[0];
+      let content= more.content.cloneNode(true);
+      more.parentNode.appendChild(content);
+      const morePosts = document.getElementsByClassName("more-photos")[0];
+      morePosts.addEventListener("click", function(event){
+        event.preventDefault();
+        main.get(main.getNumPosts() - main.getMorePosts());
+      });
+  }
   static update(post) {
     let template = document.getElementById(post.id);
     View.showLikes(post, template);

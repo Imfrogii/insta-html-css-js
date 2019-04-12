@@ -1,9 +1,18 @@
+// window.addEventListener("onload",function(){
+  // let returnObj = JSON.parse(localStorage.getItem("Posts"));
+//   document.addEventListener("onload",function(){
+//   localStorage.setItem("Posts","");
+//   if(localStorage["Posts"]!=="");
+//   main.replaceLocalPhotoPosts();
+// });
+
 const like = document.getElementsByClassName("button-like");
 for (let i of like)
   i.addEventListener("click", doLike);
 
 function doLike(event) {
   let post = main.getPhotoPost(this.id);
+  let indexStartPost = main.getPhotoposts().indexOf(post);
   let check = false;
   let userName = main.getUserName();
   if (userName ==="")
@@ -14,14 +23,17 @@ function doLike(event) {
       this.src = "img/like.png"
       delete post.likes[post.likes.indexOf(i)];
       post.likes.clean(undefined);
+      main.replaceSomePhotoPosts(indexStartPost, post);
       break;
     }
   }
   if (check === false) {
     this.src = "img/like2.png"
     post.likes.push(userName);
+    main.replaceSomePhotoPosts(indexStartPost, post);
   }
   View.update(post);
+  localStorage["Posts"] = JSON.stringify(main.getPhotoposts());
   console.log(post.likes);
 }
 
@@ -141,6 +153,7 @@ function findOnClickHashtags(event) {
   filter.hashtags = [];
   filter.hashtags.push(this.text);
   main.get(filter);
+  alert("Найдено по запросу: "+ this.text);
 }
 
 const add = document.getElementsByClassName("add-photo")[0];
@@ -213,7 +226,6 @@ dropZone.addEventListener('drop', function(e) {
   dropZone.classList.remove('dragover');
   let reader = new FileReader();
   let files = e.dataTransfer.files;
-  // sendFiles(files);
   reader.onloadend = function() {
     let img = document.getElementsByClassName("to-upload-image")[0];
     img.src = reader.result;
@@ -237,7 +249,6 @@ for (let i of moreComm)
 function doMoreComm(event) {
   alert("Показано");
 }
-
 
 const logSign = document.getElementsByClassName("not-logIn")[0];
 const log = logSign.querySelector("a");

@@ -149,7 +149,7 @@ let main = (function() {
     {
       id: '17',
       descriprion: 'за Орудууу',
-      createdAt: new Date('2018-16-03T23:00:00'),
+      createdAt: new Date('2018-12-03T23:00:00'),
       author: 'Орк',
       photoLink: 'img/photo1.jpg',
       hashtags: ["#жизнь_за_нерзулла", "#построить", "#радость"],
@@ -191,6 +191,10 @@ let main = (function() {
       return photoPosts._photoPosts;
     },
 
+    getNumPosts(){
+      return photoPosts._photoPosts.length;
+    },
+
     getLastFilter(){
       return lastFilter;
     },
@@ -215,6 +219,20 @@ let main = (function() {
       View.showExamples(photoPosts, lastFilter);
     },
 
+    getMorePosts(){
+      return photoPosts.getNumMore();
+    },
+
+    replaceLocalPhotoPosts(){
+      let webPosts = JSON.parse(localStorage.getItem("Posts"));
+      webPosts.forEach(post=>post.createdAt = new Date(post.createdAt));
+      photoPosts = new PostCollection(webPosts);
+    },
+
+    replaceSomePhotoPosts(indexStartPost, post){
+      photoPosts._photoPosts.splice(indexStartPost, 1, post);
+    },
+
     get(skip = 0, top = 10, filterConfig) {
       if (typeof(skip) === "object") {
         filterConfig = skip;
@@ -234,6 +252,8 @@ let main = (function() {
           View.showPost(item, true);
         else View.showPost(item, false);
       }
+      if(photoPosts.getNumMore()>=1)
+      View.showMorePostsButton();
     },
 
     add(post) {
@@ -241,6 +261,9 @@ let main = (function() {
         post.author = userName;
       if (photoPosts.add(post)) {
         this.get(0, 10, lastFilter);
+        // var photoPosts = JSON.stringify(obj); //сериализуем его
+        // localStorage.setItem("Posts", JSON.stringify(photoPosts));
+        localStorage["Posts"] = JSON.stringify(this.getPhotoposts());
         return true;
       }
       return false;
@@ -250,6 +273,7 @@ let main = (function() {
       if (userName !== "") {
         if (photoPosts.remove(id)) {
           View.delete(id);
+          localStorage["Posts"] = JSON.stringify(this.getPhotoposts());
           return true;
         } else return false;
       } else return false;
@@ -259,6 +283,7 @@ let main = (function() {
       if (userName !== "") {
         if (photoPosts.edit(id, post)) {
           View.refactor(id, post);
+          localStorage["Posts"] = JSON.stringify(this.getPhotoposts());
           return true;
         } else return false;
       }
@@ -285,28 +310,44 @@ let main = (function() {
       this.get(lastFilter);
     },
 
+    start(){
+      if(localStorage["Posts"]!=="a")
+      this.replaceLocalPhotoPosts();
+      else
+      localStorage["Posts"] = JSON.stringify(this.getPhotoposts());
+      this.show();
+      this.logIn("User1", "111");
+      this.get();
+      this.showHelp();
+    },
+
 
   }
 }());
 
-main.show();
-main.get(0, 2);
+if(localStorage["Posts"]===null)
+localStorage.setItem("Posts","a");
+// localStorage.setItem("Posts","a");
+main.start();
+
+// main.show();
+// main.get(0, 2);
 // main.editPost('1', {
 //   descriprion: "Hi Guys",
 //   hashtags: ["#Js", "#JavaScript"]
 // });
 // main.deletePost(2);
 // main.deletePost(5);
-main.get({
-  author: "User1"
-});
+// main.get({
+//   author: "User1"
+// });
 // main.get({
 //   descriprion: "Hi Guys",
 //   hashtags: ["#Js"]
 // });
-main.logIn("User1", "111");
-main.get(0, 5);
-// main.logIn("aa","12");
-// View.clear();
-main.showHelp();
+// main.logIn("User1", "111");
+// main.get(9);
+// // main.logIn("aa","12");
+// // View.clear();
+// main.showHelp();
 // main.get();
