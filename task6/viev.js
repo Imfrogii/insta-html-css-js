@@ -63,6 +63,7 @@ class View {
       morePosts.addEventListener("click", function(event){
         event.preventDefault();
         main.get(main.getNumPosts() - main.getMorePosts());
+        scroll(0,0);
       });
   }
   static update(post) {

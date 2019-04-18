@@ -185,12 +185,17 @@ function doAdd(event) {
   let decript = addPopUp.querySelector(".descriprion-add");
   let hash = addPopUp.querySelector(".hashtags-add");
   let post = {};
+  let img = document.getElementsByClassName("to-upload-image")[0];
   if (decript.value !== "") {
     post.descriprion = decript.value;
     if (hash.value !== "")
       post.hashtags = hash.value.split(" ");
-    let img = document.getElementsByClassName("to-upload-image")[0];
+    if(img.src!="file:///D:/ForGit/task6/img/upload.svg")
     post.photoLink = img.src;
+    else{
+      alert("Добавьте фото");
+      return;
+    }
   } else {
     alert("Добавьте описание");
     return;
@@ -199,9 +204,16 @@ function doAdd(event) {
     alert("Добавлено успешно")
     addPopUp.style.display = "none";
     addButtonsListeners();
+    decript.value = null;
+    hash.value = null;
+    img.src = "file:///D:/ForGit/task6/img/upload.svg";
+    scroll(0,0);
+
   } else
     alert("Некорректные данные");
 }
+
+
 
 let dropZone = document.getElementsByClassName("upload-container")[0];
 dropZone.addEventListener("dragover", function(e) {
@@ -220,6 +232,7 @@ dropZone.addEventListener("dragleave", function(e) {
   e.stopPropagation();
   dropZone.classList.remove('dragover');
 });
+
 dropZone.addEventListener('drop', function(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -231,6 +244,17 @@ dropZone.addEventListener('drop', function(e) {
     img.src = reader.result;
   }
   let link = reader.readAsDataURL(files[0]);
+});
+
+let uploadPhoto = document.getElementById("file-input");
+uploadPhoto.addEventListener('change', function(e) {
+  let reader = new FileReader();
+  let files = e.target.files;
+  reader.onloadend = function() {
+    let img = document.getElementsByClassName("to-upload-image")[0];
+    img.src = reader.result;
+}
+let link = reader.readAsDataURL(files[0]);
 });
 
 const moreDescr = document.getElementsByClassName("more-description");

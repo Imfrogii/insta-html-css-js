@@ -28,6 +28,7 @@ class PostCollection {
     for (let key in filter) {
       counter++;
     }
+    // this._photoPosts = this._photoPosts.sort(this._sortDates());
     if (filter === undefined||counter === 0) {
         this._numMore = this._photoPosts.slice(top + skip).length;
         answer = this._photoPosts.slice(skip, top + skip);
@@ -180,7 +181,7 @@ class PostCollection {
       photoPost.hashtags = [];
     }
     if (PostCollection._validatePhotoPost(photoPost)) {
-      this._photoPosts.push(photoPost);
+      this._photoPosts.unshift(photoPost);
       console.log(photoPost);
       console.log(this._photoPosts);
       return true;

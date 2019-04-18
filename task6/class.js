@@ -325,7 +325,7 @@ let main = (function() {
   }
 }());
 
-if(localStorage["Posts"]===null)
+if(localStorage["Posts"]===undefined)
 localStorage.setItem("Posts","a");
 // localStorage.setItem("Posts","a");
 main.start();
