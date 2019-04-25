@@ -190,7 +190,7 @@ function doAdd(event) {
     post.descriprion = decript.value;
     if (hash.value !== "")
       post.hashtags = hash.value.split(" ");
-    if(img.src!="file:///D:/ForGit/task6/img/upload.svg")
+    if(img.src.indexOf("img/upload.svg")===-1)
     post.photoLink = img.src;
     else{
       alert("Добавьте фото");
@@ -206,7 +206,7 @@ function doAdd(event) {
     addButtonsListeners();
     decript.value = null;
     hash.value = null;
-    img.src = "file:///D:/ForGit/task6/img/upload.svg";
+    img.src = "img/upload.svg";
     scroll(0,0);
 
   } else
