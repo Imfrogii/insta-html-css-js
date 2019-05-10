@@ -1,0 +1,1 @@
+SELECT * FROM photo_post WHERE user_id=7 and DESCRIPTION LIKE "Hello%";
